@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asset Link</title>
+</head>
+<body>
+<h1>Asset Link</h1>
+<pre id="json"></pre>
+<script>
+    fetch('assestlink.json')
+      .then(res => res.json())
+      .then(data => document.getElementById('json').textContent = JSON.stringify(data, null, 2));
+</script>
+</body>
+</html>
