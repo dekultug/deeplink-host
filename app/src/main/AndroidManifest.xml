@@ -30,7 +30,7 @@
 
                 <data
                     android:scheme="https"
-                    android:host="deeplink.mock.com"
+                    android:host="deeplink-host-theta.vercel.app"
                     android:pathPrefix="/myapp" />
             </intent-filter>
         </activity>
