@@ -30,7 +30,7 @@
 
                 <data
                     android:scheme="https"
-                    android:host="example.com"
+                    android:host="deeplink.mock.com"
                     android:pathPrefix="/myapp" />
             </intent-filter>
         </activity>
