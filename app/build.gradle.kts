@@ -17,6 +17,15 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = rootProject.file("keystores/key_dev")
+            storePassword = "qqqq1111"
+            keyAlias = "key0"
+            keyPassword = "qqqq1111"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false

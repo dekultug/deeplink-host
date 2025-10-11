@@ -2,7 +2,7 @@
   {
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
-      "namespace": "com.example.apptestall",
+      "namespace": "android_app",
       "package_name": "com.example.apptestall",
       "sha256_cert_fingerprints": [
         "64:E9:19:3D:93:FF:D8:35:D0:5A:CF:E1:FF:29:5E:17:2B:01:1A:CE:01:F6:D3:40:DD:8A:43:62:02:69:5D:CE"
