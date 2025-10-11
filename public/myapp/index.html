@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Asset Link</title>
+    <title>Chuyển hướng Deeplink</title>
+    <script type="text/javascript">
+        // 1. URI Scheme Tùy chỉnh của Ứng dụng (Cần định nghĩa trong Manifest!)
+        const APP_URI_SCHEME = "myappscheme://"; 
+        
+        // 2. Link đến Google Play Store
+        const PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=com.block.juggle&pcampaignid=WS_games_home_windows_rfy_cluster&hl=vi";
+        
+        // 3. Link đầy đủ để mở ứng dụng nếu đã cài
+        const FULL_DEEPLINK = APP_URI_SCHEME + "product/123"; // Ví dụ: myappscheme://product/123
+
+        function redirectToAppOrStore() {
+            // Cố gắng mở ứng dụng bằng URI Scheme
+            window.location.href = FULL_DEEPLINK;
+
+            // Thiết lập Timeout (Ví dụ: 500ms)
+            // Nếu ứng dụng mở, trình duyệt sẽ bị mất focus.
+            // Nếu ứng dụng KHÔNG mở, trình duyệt vẫn focus và sau 500ms sẽ chuyển hướng.
+            setTimeout(function() {
+                window.location.href = PLAY_STORE_LINK;
+            }, 500); 
+        }
+
+        // Chạy hàm khi trang tải xong
+        window.onload = redirectToAppOrStore;
+    </script>
 </head>
 <body>
-<h1>Asset Link</h1>
-<pre id="json"></pre>
-<script>
-    fetch('assestlink.json')
-      .then(res => res.json())
-      .then(data => document.getElementById('json').textContent = JSON.stringify(data, null, 2));
-</script>
+<p>Đang cố gắng mở ứng dụng...</p>
+<a id="fallback-link" href="#">Nhấp vào đây nếu không hoạt động</a>
 </body>
 </html>
