@@ -1,0 +1,10 @@
+{
+  "al:android": {
+    "package": "com.example.apptestall",
+    "class": "com.example.apptestall.MainActivity",
+    "app_name": "My App"
+  },
+  "al:web": {
+    "url": "apptest://facebookhost.com/deeplink"
+  }
+}

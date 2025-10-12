@@ -1,5 +1,6 @@
 package com.example.apptestall
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.facebook.applinks.AppLinkData
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -31,11 +33,34 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val appLinkIntent = intent
+        val appLinkData = AppLinkData.fetchDeferredAppLinkData(this) { appLinkData ->
+            if (appLinkData != null) {
+                val targetUri = appLinkData.targetUri
+                Log.d("FB_DEEPLINK", "Deeplink URL: $targetUri")
+                // Xử lý logic dựa trên targetUri
+            }
+        }
+        // Hoặc trực tiếp từ Intent
+        handleIntent(intent)
+//        deepLinkMyHost()
+    }
 
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+//        handleIntent(intent)
+    }
+
+    private fun handleIntent(intent: Intent) {
+        val appLinkData = AppLinkData.createFromAlApplinkData(intent)
+        appLinkData?.targetUri?.let {
+            Log.d("FB_DEEPLINK", "Direct Deeplink URL: $it")
+        }
+    }
+
+    private fun deepLinkMyHost() {
+        val appLinkIntent = intent
         // 2. Lấy dữ liệu URI (URL) từ Intent
         val appLinkData: Uri? = appLinkIntent.data
-
         if (appLinkData != null) {
 
             // A. TRÍCH XUẤT QUERY PARAMETER (Tham số Truy vấn)
@@ -57,7 +82,6 @@ class MainActivity : AppCompatActivity() {
                 loadProductDetails(productId)
             }
         }
-
     }
 
     private fun loadProductDetails(id: String) {
